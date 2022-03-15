@@ -1,0 +1,8 @@
+{$match: {
+  sourceBytes: {$gte: 1480},
+  errorRate: {$gte: 85}
+}}, {$addFields: {
+  condition: "DOS"
+}}, {$merge: {
+  into: 'threats'
+}}

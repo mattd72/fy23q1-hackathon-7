@@ -1,0 +1,16 @@
+{
+    "id": "623017071a3545c3c210d330",
+    "name": "ProbeAttackLogic",
+    "type": "SCHEDULED",
+    "config": {
+        "schedule": "*/1 * * * *"
+    },
+    "disabled": false,
+    "event_processors": {
+        "FUNCTION": {
+            "config": {
+                "function_name": "ProbeAttackLogic"
+            }
+        }
+    }
+}

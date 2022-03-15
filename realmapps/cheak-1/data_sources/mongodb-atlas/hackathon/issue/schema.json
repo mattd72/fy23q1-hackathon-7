@@ -1,0 +1,100 @@
+{
+    "properties": {
+        "_id": {
+            "bsonType": "objectId"
+        },
+        "assignee": {
+            "bsonType": "string"
+        },
+        "assignee_username": {
+            "bsonType": "string"
+        },
+        "created_date": {
+            "bsonType": "string"
+        },
+        "created_date_zoned": {
+            "bsonType": "string"
+        },
+        "description": {
+            "bsonType": "string"
+        },
+        "issue_id": {
+            "bsonType": "string"
+        },
+        "priority": {
+            "bsonType": "string"
+        },
+        "reporter": {
+            "bsonType": "string"
+        },
+        "reporter_username": {
+            "bsonType": "string"
+        },
+        "resolution": {
+            "bsonType": "string"
+        },
+        "resolved_date": {
+            "bsonType": "string"
+        },
+        "resolved_date_zoned": {
+            "bsonType": "string"
+        },
+        "status": {
+            "bsonType": "string"
+        },
+        "summary": {
+            "bsonType": "string"
+        },
+        "threat": {
+            "bsonType": "object",
+            "properties": {
+                "condition": {
+                    "bsonType": "string"
+                },
+                "datetime": {
+                    "bsonType": "date"
+                },
+                "destination_ip_address": {
+                    "bsonType": "string"
+                },
+                "durationInMillis": {
+                    "bsonType": "int"
+                },
+                "errorRate": {
+                    "bsonType": "int"
+                },
+                "id": {
+                    "bsonType": "int"
+                },
+                "ping_time": {
+                    "bsonType": "double"
+                },
+                "sourceBytes": {
+                    "bsonType": "int"
+                },
+                "source_geo_lat": {
+                    "bsonType": "double"
+                },
+                "source_geo_long": {
+                    "bsonType": "double"
+                },
+                "source_ip_address": {
+                    "bsonType": "string"
+                },
+                "threat_id": {
+                    "bsonType": "objectId"
+                }
+            }
+        },
+        "type": {
+            "bsonType": "string"
+        },
+        "updated_date": {
+            "bsonType": "string"
+        },
+        "updated_date_zoned": {
+            "bsonType": "string"
+        }
+    },
+    "title": "issue"
+}

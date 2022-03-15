@@ -1,0 +1,8 @@
+{
+    "app_id": "cheak-1-urqsn",
+    "config_version": 20210101,
+    "name": "cheak-1",
+    "location": "US-VA",
+    "deployment_model": "LOCAL",
+    "environment": "development"
+}

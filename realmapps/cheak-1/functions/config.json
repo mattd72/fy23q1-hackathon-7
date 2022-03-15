@@ -1,0 +1,35 @@
+[
+    {
+        "name": "resetFunc",
+        "private": false,
+        "can_evaluate": {}
+    },
+    {
+        "name": "BadPacketLogic",
+        "private": true
+    },
+    {
+        "name": "BackPacket",
+        "private": true
+    },
+    {
+        "name": "ProbeAttackLogic",
+        "private": true
+    },
+    {
+        "name": "DNSAttackLogic",
+        "private": false
+    },
+    {
+        "name": "autocompleteSummary",
+        "private": false
+    },
+    {
+        "name": "AutoJIRATicketCreation",
+        "private": false
+    },
+    {
+        "name": "filteredIssues",
+        "private": false
+    }
+]

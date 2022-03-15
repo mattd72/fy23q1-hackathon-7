@@ -1,0 +1,16 @@
+{
+    "id": "6230a8d3458a6e4752c34d6a",
+    "name": "DNSAttackLogic",
+    "type": "SCHEDULED",
+    "config": {
+        "schedule": "*/1 * * * *"
+    },
+    "disabled": false,
+    "event_processors": {
+        "FUNCTION": {
+            "config": {
+                "function_name": "DNSAttackLogic"
+            }
+        }
+    }
+}

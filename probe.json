@@ -1,0 +1,8 @@
+{$match: {
+  durationInMillis: {$gte: 460},
+  sourceBytes: {$gte: 1480}
+}}, {$addFields: {
+  condition: "probe"
+}}, {$merge: {
+  into: 'threats'
+}}

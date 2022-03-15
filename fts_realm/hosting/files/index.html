@@ -23,10 +23,9 @@
         <div class="row">
             <div class="col-3">
                 <div class="view overlay">
-                    <img src="/img/M.svg" style="height: 12em; padding-left: 10px;"/>
+                    <img src="/img/search.png" style="height: 12em; padding-left: 10px;"/>
                 </div>
             </div>
-
             <div class="col-9">
                 <h1 style="text-align: center;">Let's Analyse some issues!</h1>
                 <br>
@@ -111,8 +110,10 @@
 
             txt += `<b>${Jason[i].summary }</b><br>`;
             txt += `<b>Score:  ${Jason[i].score["$numberDouble"]} </b><br><br>`;
-            txt += `Status: ${Jason[i].status} <br><br>`;
-            txt += `Reporter: ${Jason[i].reporter} <br><br>`;
+            txt += `Type: ${Jason[i].type} <br>`;
+            txt += `Status: ${Jason[i].status} <br>`;
+            txt += `Reporter: ${Jason[i].reporter} <br>`;
+            txt += `Assignee: ${Jason[i].assignee} <br>`;
             txt += `Description: ${Jason[i].description} <br><br>`;
             txt += "<hr>";
         }
@@ -133,7 +134,7 @@
                     success: function(data, status, xhr) {
                         console.log("Data: " + JSON.stringify(data));
                         data.forEach(function(item, index) {
-                            matches.push(item.issue_id);
+                            matches.push(item.summary);
                         })
                         asyncResults(matches);
                     },

@@ -8,11 +8,15 @@ exports = function(payload, response) {
       //PASTE AGG PIPELINE CODE HERE
       [
         {$search: { 
-          term: { 
-            path: ['description','summary','reporter'], 
-            query: arg, 
-            wildcard: true 
-          } 
+          "index": "ix_autocomplete",
+            "autocomplete": {
+              "query": arg,
+              "path": "summary",
+              fuzzy: {
+                maxEdits: 2,
+                prefixLength: 0
+              }  
+            }
         }}, 
         {$project: { 
           description: 1, 

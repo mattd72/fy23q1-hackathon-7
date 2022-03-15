@@ -29,11 +29,11 @@ _Describe what you application does and how it works_
 
 # Roles and Responsibilities
 
-Matt Davis
-Jeffrey Cheak
-Peter Kim
-Sharath Rao
-Will Chow
+Matt Davis <br>
+Jeffrey Cheak <br>
+Peter Kim <br>
+Sharath Rao <br>
+Will Chow <br>
 Chris Tselebis (Out Sick)
 
 # Demonstration Script

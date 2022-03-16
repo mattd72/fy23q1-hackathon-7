@@ -49,8 +49,9 @@ while insert_count < records_to_insert:
             "destination_ip_address": fake.ipv4(),
             "ping_time": fake.random_int(min=5, max=70),
             "createdOn": datetime.now(),
+            "durationInMillis": fake.random_int(min=10, max=120000),
             "sourcebytes": fake.random_int(min=200, max=3200),
-            "errorrate": fake.random_int(min=0, max=30),
+            "errorrate": fake.random_int(min=0, max=90),
             "location": {
                 "type": "point",
                 "coordinates": fake.location_on_land(coords_only=True)

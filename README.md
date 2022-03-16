@@ -1,9 +1,5 @@
 # fy23q1-hackathon-7
 
-// probe.json - aggregation matches on a connection duration threshold and sourcebytes threashold to detect possible probing attack, $merge to threats collection.  Needs to do a $lookup on a field (datetimestamp?) in the networkpackets collection to pull the jira data into it.
-
-// dos.json - aggregation matches on sourcebytes threshold and errorRate threshold to flag potential DOS attack, $merge to threats collection.  Needs to do a $lookup on a field (datetimestamp?)
-
 # Details
 
 **Project** : Real-time Network Packet Analysis and Reporting Solution <br>
@@ -51,11 +47,5 @@ Chris Tselebis (Out Sick)
 
 # Demonstration Script
 
-_Demonstration script (or link to script) goes here_
+https://docs.google.com/document/d/1t-b8TBKq3d8rS673JLzHJBegbFWNFg8O_Kw4TFn_40Q/edit?usp=sharing
 
-_The demonstration script should provide all the information required for another MongoDB SA to deliver your demonstration to a prospect. This should include:_
-
-* _setup/installation steps_
-* _step by step instructions on how to give the demonstration_
-* _key points to emphasize at each point in the demonstration_
-* _any tear down steps required to reset the demonstration so it is ready for the next time_

@@ -54,7 +54,9 @@ while insert_count < records_to_insert:
             "errorRate": fake.random_int(min=0, max=90),
             "location": {
                 "type": "point",
-                "coordinates": fake.location_on_land(coords_only=True)
+                "coordinates": [
+                    Decimal128(fake.longitude()),
+                    Decimal128(fake.latitude())]
             }
         }
 

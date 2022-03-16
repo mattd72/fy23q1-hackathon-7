@@ -30,9 +30,15 @@ _Describe the architecture of your application and include a diagram._
 * Realm triggers and functions
 * Realm Charts
 * Realm static hosting
+* Realm GraphQL (custom resolver /w Atlas Search)
 
-_Describe what you application does and how it works_
+## Functional description
 
+MongoDB is used as the core database for storing network packet data. Realm triggers are used to persist logic to take action when an event is captured which meets certain criteria that represents a potential security threat--this logic creates a new threat document for reporting/analysis purposes in a separate collection and also creates a "JIRA ticket" to assign to a human being to follow up on. 
+
+The GUI allows analysts to search "JIRA tickets" and also provides visualizations on all detected threats. 
+
+A GraphQL endpoint is available for analysts and developers to query "JIRA tickets" programmatically.
 
 # Roles and Responsibilities
 

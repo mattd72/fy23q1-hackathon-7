@@ -1,4 +1,4 @@
-target_conn_string = 'mongodb+srv://admin:admin@team7.vtftv.mongodb.net/'
+target_conn_string = 'mongodb+srv://user:pwd@team7.vtftv.mongodb.net/'
 target_database = 'hackathon'
 target_collection = 'networkpackets'
 

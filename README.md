@@ -19,7 +19,7 @@ This was a real problem faced by one of Sharath's customers and allows us to sho
 
 # Detailed Application Overview
 
-![image](https://user-images.githubusercontent.com/1675548/158637882-5ea34f9b-63e0-4939-b9df-c78ff5e4c682.png)
+<img width="889" alt="image" src="https://user-images.githubusercontent.com/1675548/158664353-de2a3a64-a0f2-4e22-be59-2a3dd34674a9.png">
 
 ## MongoDB components used
 * Atlas Search

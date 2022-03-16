@@ -1,0 +1,49 @@
+[
+    {
+        "name": "resetFunc",
+        "private": false,
+        "can_evaluate": {}
+    },
+    {
+        "name": "BadPacketLogic",
+        "private": true
+    },
+    {
+        "name": "BackPacket",
+        "private": true
+    },
+    {
+        "name": "ProbeAttackLogic",
+        "private": true
+    },
+    {
+        "name": "DNSAttackLogic",
+        "private": false
+    },
+    {
+        "name": "AutoJIRATicketCreation",
+        "private": false
+    },
+    {
+        "name": "filteredIssues",
+        "private": false
+    },
+    {
+        "name": "searchIssuesResolver",
+        "private": false
+    },
+    {
+        "name": "makeId",
+        "private": false
+    },
+    {
+        "name": "fts_query",
+        "private": false,
+        "run_as_system": true
+    },
+    {
+        "name": "fts_typeahead",
+        "private": false,
+        "run_as_system": true
+    }
+]

@@ -13,17 +13,24 @@
 
 # Overview
 
-_Insert Executive Overview of your application/demonstration_
+Many organizations have challenges efficiently collecting and analyzing data that can inform them of security threats happening at the network layer. Many COTS solutions don't have the technical underpinning to support capturing the high velocity and volume of network packets that need to be analyzed to determine whether there is potentially malicious activity occuring. 
+
+MongoDB's time series capabilities can efficiently store and analyze event data such as network packet metadata while also providing search and reporting capabilities in the same application data platform. This gives organizations the means to react to potential security threats quicker and tp significantly reduce to risks to their business.
 
 # Justification
 
-_Please explain why you decided to build the application/demonstration for this project. What inspired you? What problems does it solve or how will it make Presales activities easier?_
-_What MongoDB competitive differentiators (developer productivity, resiliency, scalability, etc.) does this demonstration showcase?_
+This was a real problem faced by one of Sharath's customers and allows us to showcase many of MongoDB's differentiating capabilities. 
 
 # Detailed Application Overview
 
 _Describe the architecture of your application and include a diagram._
-_List all the MongoDB components/products used in your demonstration._
+
+## MongoDB components used
+* Atlas Search
+* Realm triggers and functions
+* Realm Charts
+* Realm static hosting
+
 _Describe what you application does and how it works_
 
 

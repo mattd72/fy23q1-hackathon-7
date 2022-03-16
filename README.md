@@ -2,7 +2,7 @@
 
 # Details
 
-**Project** : Real-time Network Packet Analysis and Reporting Solution <br>
+**Project** : Real-time Network Anomaly Detection Solution <br>
 **Team Number** : 7 <br>
 **Team Name** : Oploggers <br>
 **Demonstration Video** : _Insert link to demonstration video_  

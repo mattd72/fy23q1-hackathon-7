@@ -15,7 +15,7 @@
 
 Many organizations have challenges efficiently collecting and analyzing data that can inform them of security threats happening at the network layer. Many COTS solutions don't have the technical underpinning to support capturing the high velocity and volume of network packets that need to be analyzed to determine whether there is potentially malicious activity occuring. 
 
-MongoDB's time series capabilities can efficiently store and analyze event data such as network packet metadata while also providing search and reporting capabilities in the same application data platform. This gives organizations the means to react to potential security threats quicker and tp significantly reduce to risks to their business.
+MongoDB's time series capabilities can efficiently store and analyze event data such as network packet metadata while also providing search and reporting capabilities in the same application data platform. This gives organizations the means to react to potential security threats quicker and to significantly reduce to risks to their business.
 
 # Justification
 

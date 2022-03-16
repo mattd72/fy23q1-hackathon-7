@@ -51,8 +51,10 @@ while insert_count < records_to_insert:
             "createdOn": datetime.now(),
             "sourcebytes": fake.random_int(min=200, max=3200),
             "errorrate": fake.random_int(min=0, max=30),
-            "durationInMillis": fake.random_int(min=2, max=240000),
-            "location": fake.location_on_land(coords_only)
+            "location": {
+                "type": "point",
+                "coordinates": fake.location_on_land(coords_only=True)
+            }
         }
 
         packets.append(packet)

@@ -5,7 +5,7 @@
 **Project** : Real-time Network Packet Analysis and Reporting Solution <br>
 **Team Number** : 7 <br>
 **Team Name** : Oploggers <br>
-**Demonstration Video** : _Insert link to demonstration video_  
+**Demonstration Video** : https://drive.google.com/file/d/1CM4ZaNTOLxslYXiFgFJqty_pGPQ4rOkV/view?usp=sharing  
 
 # Overview
 

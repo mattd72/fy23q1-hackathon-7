@@ -6,7 +6,7 @@
 
 # Details
 
-**Project** : _insert project title here_  <br>
+**Project** : Real-time Network Packet Analysis and Reporting Solution <br>
 **Team Number** : 7 <br>
 **Team Name** : Oploggers <br>
 **Demonstration Video** : _Insert link to demonstration video_  

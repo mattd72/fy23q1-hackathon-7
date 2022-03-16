@@ -1,6 +1,6 @@
 target_conn_string = 'mongodb+srv://admin:admin@team7.vtftv.mongodb.net/'
-target_database = 'network'
-target_collection = 'packet'
+target_database = 'hackathon'
+target_collection = 'netwokpackets'
 
 # Set to an empty string to turn off compression
 # compressor = ''         # No compression

@@ -23,7 +23,7 @@ This was a real problem faced by one of Sharath's customers and allows us to sho
 
 # Detailed Application Overview
 
-_Describe the architecture of your application and include a diagram._
+![image](https://user-images.githubusercontent.com/1675548/158637882-5ea34f9b-63e0-4939-b9df-c78ff5e4c682.png)
 
 ## MongoDB components used
 * Atlas Search

@@ -51,7 +51,7 @@ while insert_count < records_to_insert:
             "createdOn": datetime.now(),
             "durationInMillis": fake.random_int(min=10, max=120000),
             "sourceBytes": fake.random_int(min=200, max=3200),
-            "errorrate": fake.random_int(min=0, max=90),
+            "errorRate": fake.random_int(min=0, max=90),
             "location": {
                 "type": "point",
                 "coordinates": fake.location_on_land(coords_only=True)

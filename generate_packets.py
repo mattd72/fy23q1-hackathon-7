@@ -47,13 +47,12 @@ while insert_count < records_to_insert:
             "id": fake.random_int(min=1, max=99999999),
             "source_ip_address": fake.ipv4(),
             "destination_ip_address": fake.ipv4(),
-            "source_geo_lat": Decimal128(fake.latitude()),
-            "source_geo_long": Decimal128(fake.longitude()),
             "ping_time": fake.random_int(min=5, max=70),
             "createdOn": datetime.now(),
             "sourcebytes": fake.random_int(min=200, max=3200),
             "errorrate": fake.random_int(min=0, max=30),
-            "durationInMillis": fake.random_int(min=2, max=240000)
+            "durationInMillis": fake.random_int(min=2, max=240000),
+            "location": fake.location_on_land(coords_only=true)
         }
 
         packets.append(packet)

@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Dashboard - NiceAdmin Bootstrap Template</title>
+  <title>Dashboard - Security NOC Admin</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -29,6 +29,7 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
+
   <!-- =======================================================
   * Template Name: NiceAdmin - v2.2.2
   * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
@@ -45,17 +46,20 @@
     <div class="d-flex align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex align-items-center">
         <img src="assets/img/logo.png" alt="">
-        <span class="d-none d-lg-block">NiceAdmin</span>
+        <span class="d-none d-lg-block">Security NOC</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
 
-    <div class="search-bar">
-      <form class="search-form d-flex align-items-center" method="POST" action="#">
-        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
-        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-      </form>
-    </div><!-- End Search Bar -->
+    <div class="row" id="box">
+      <div id="the-basics" class="col-11">
+        <input class="typeahead" type="text" name="" id="description"
+               placeholder="search issues..." aria-label="Search">
+      </div>
+      <div class="col-1">
+        <span><i class="fa fa-search" aria-hidden="true" onclick="userAction()" ></i></span>
+      </div>
+    </div>
 
     <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
@@ -272,6 +276,14 @@
   <aside id="sidebar" class="sidebar">
 
     <ul class="sidebar-nav" id="sidebar-nav">
+
+      <li class="nav-item">
+        <a class="nav-link " href="index.html">
+          <i class="bi bi-grid"></i>
+          <span>MongoSearch</span>
+        </a>
+      </li><!-- End MongoSearch Nav -->
+
 
       <li class="nav-item">
         <a class="nav-link " href="index.html">
@@ -542,11 +554,11 @@
                 </div>
 
                 <div class="card-body">
-                  <h5 class="card-title">Sales <span>| Today</span></h5>
+                  <h5 class="card-title">Alarms <span>| Today</span></h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-cart"></i>
+                      <i class="bi bi-alarm"></i>
                     </div>
                     <div class="ps-3">
                       <h6>145</h6>
@@ -577,7 +589,7 @@
                 </div>
 
                 <div class="card-body">
-                  <h5 class="card-title">Revenue <span>| This Month</span></h5>
+                  <h5 class="card-title">Revenue Diversion <span>| This Month</span></h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -631,6 +643,143 @@
 
             </div><!-- End Customers Card -->
 
+</div>
+
+          <!-- Search Results -->
+          <div class="col-12">
+            <div class="card">
+              <div class="filter"></div>
+              <div class="card-body">
+                <h5 class="card-title">Search Results</h5>
+                <div class="container" >
+                  <header class="jumbotron">
+                    <div class="row">
+                      <div class="col-3">
+
+                      </div>
+
+                      <br>
+                    </div>
+                  </header>
+
+                  <div>
+                    <p id="results" style="font-size: 1.8em"></p>
+
+                  </div>
+
+
+                </div>
+
+                <script src="https://twitter.github.io/typeahead.js/js/jquery-1.10.2.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/corejs-typeahead/1.2.1/typeahead.bundle.min.js"></script>
+
+                <script>
+
+                  var wage = document.getElementById("description");
+                  wage.addEventListener("keydown", function (e) {
+                    if (e.keyCode === 13) {  //checks whether the pressed key is "Enter"
+                      $('.typeahead').typeahead('close');
+                      userAction();
+                    }
+                  });
+
+                  const userAction = async () =>
+                  {
+                    let searchString = document.getElementById("description").value;
+                    let txt = "";
+
+                    console.log(searchString);
+
+                    let query_endpoint_url = "https://us-east-1.aws.data.mongodb-api.com/app/sharath-1-ejeqf/endpoint/fts_query";
+                    let url = query_endpoint_url + "?arg=" + searchString;
+
+                    fetch(url)
+                            .then(function (response) {
+                              return response.json();
+                            }).then(function (myJson) {
+                      if (myJson["$undefined"] === true) {
+                        console.log('NO FETCH RESULT');
+                        txt += `<br><br><br><b><h3>IMPLEMENT FULL TEXT SEARCH AGGREGATION TO SEARCH MOVIE COLLECTION</h3></b>`;
+                      } else {
+                        console.log("FETCHED RESULT... "  );
+                        if (myJson.length !== 0) {
+                          //console.log("My JSON: " + JSON.stringify(myJson));
+                          console.log("Fetched array has " + myJson.length + " entries");
+                          txt = buildText(myJson);
+                        }
+                      }  // end of ELSE
+
+                      document.getElementById("results").innerHTML = txt;
+                    });
+                  }
+
+                  function buildText(Jason){
+                    // HELPER FUNCTION FOR USER ACTION
+
+                    let i = 0;      // for number of movie documents returned
+                    let j = 0;      // for number of highlight entries
+                    let k = 0;      // for highlight.texts type entries - either "hit" or "text"
+
+                    let txt = "";
+
+
+                    for (i; i < Jason.length; i++) {
+                      //highlight_length = Jason[i].highlight.length;
+
+                      //console.log("Jason[i]: " + Jason[i].fullplot)
+
+                      txt += `<b>${Jason[i].summary }</b><br>`;
+                      txt += `<b>Score:  ${Jason[i].score["$numberDouble"]} </b><br><br>`;
+                      txt += `Type: ${Jason[i].type} <br>`;
+                      txt += `Status: ${Jason[i].status} <br>`;
+                      txt += `Reporter: ${Jason[i].reporter} <br>`;
+                      txt += `Assignee: ${Jason[i].assignee} <br>`;
+                      txt += `Description: ${Jason[i].description} <br><br>`;
+                      txt += "<hr>";
+                    }
+                    return txt;
+                  }
+
+                  function findMovies(q, syncResults, asyncResults) {
+                    return function findMovieMatches(q, syncResults, asyncResults) {
+                      var matches= [];
+
+                      $.ajax(
+                              {
+                                url: "https://us-east-1.aws.data.mongodb-api.com/app/sharath-1-ejeqf/endpoint/fts_typeahead",
+                                type: "GET",
+                                data: {
+                                  arg: q
+                                },
+                                success: function(data, status, xhr) {
+                                  console.log("Data: " + JSON.stringify(data));
+                                  data.forEach(function(item, index) {
+                                    matches.push(item.summary);
+                                  })
+                                  asyncResults(matches);
+                                },
+                                error: function(jqXhr, textStatus, err) {
+                                  console.log("Error: " + err);
+                                }
+                              }
+                      )
+                    }
+                  }
+
+                  $('#the-basics .typeahead').typeahead({
+                            hint: true,
+                            highlight: true,
+                            minLength: 3
+                          },
+                          {
+                            source: findMovies()
+                          });
+                </script>
+              </div>
+            </div>
+            <!-- End Search Results -->
+
+
             <!-- Reports -->
             <div class="col-12">
               <div class="card">
@@ -649,7 +798,7 @@
                 </div>
 
                 <div class="card-body">
-                  <h5 class="card-title">Reports <span>/Today</span></h5>
+                  <h5 class="card-title">Network Packets <span>/Today</span></h5>
 
                   <!-- Line Chart -->
                   <div id="reportsChart"></div>
@@ -658,13 +807,13 @@
                     document.addEventListener("DOMContentLoaded", () => {
                       new ApexCharts(document.querySelector("#reportsChart"), {
                         series: [{
-                          name: 'Sales',
+                          name: 'East DC',
                           data: [31, 40, 28, 51, 42, 82, 56],
                         }, {
-                          name: 'Revenue',
+                          name: 'Central DC',
                           data: [11, 32, 45, 32, 34, 52, 41]
                         }, {
-                          name: 'Customers',
+                          name: 'GCP Central',
                           data: [15, 11, 32, 18, 9, 24, 11]
                         }],
                         chart: {
@@ -735,50 +884,50 @@
 
                   <table class="table table-borderless datatable">
                     <thead>
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Customer</th>
-                        <th scope="col">Product</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Status</th>
-                      </tr>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Customer</th>
+                      <th scope="col">Product</th>
+                      <th scope="col">Price</th>
+                      <th scope="col">Status</th>
+                    </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <th scope="row"><a href="#">#2457</a></th>
-                        <td>Brandon Jacob</td>
-                        <td><a href="#" class="text-primary">At praesentium minu</a></td>
-                        <td>$64</td>
-                        <td><span class="badge bg-success">Approved</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#">#2147</a></th>
-                        <td>Bridie Kessler</td>
-                        <td><a href="#" class="text-primary">Blanditiis dolor omnis similique</a></td>
-                        <td>$47</td>
-                        <td><span class="badge bg-warning">Pending</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#">#2049</a></th>
-                        <td>Ashleigh Langosh</td>
-                        <td><a href="#" class="text-primary">At recusandae consectetur</a></td>
-                        <td>$147</td>
-                        <td><span class="badge bg-success">Approved</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#">#2644</a></th>
-                        <td>Angus Grady</td>
-                        <td><a href="#" class="text-primar">Ut voluptatem id earum et</a></td>
-                        <td>$67</td>
-                        <td><span class="badge bg-danger">Rejected</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#">#2644</a></th>
-                        <td>Raheem Lehner</td>
-                        <td><a href="#" class="text-primary">Sunt similique distinctio</a></td>
-                        <td>$165</td>
-                        <td><span class="badge bg-success">Approved</span></td>
-                      </tr>
+                    <tr>
+                      <th scope="row"><a href="#">#2457</a></th>
+                      <td>Brandon Jacob</td>
+                      <td><a href="#" class="text-primary">At praesentium minu</a></td>
+                      <td>$64</td>
+                      <td><span class="badge bg-success">Approved</span></td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><a href="#">#2147</a></th>
+                      <td>Bridie Kessler</td>
+                      <td><a href="#" class="text-primary">Blanditiis dolor omnis similique</a></td>
+                      <td>$47</td>
+                      <td><span class="badge bg-warning">Pending</span></td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><a href="#">#2049</a></th>
+                      <td>Ashleigh Langosh</td>
+                      <td><a href="#" class="text-primary">At recusandae consectetur</a></td>
+                      <td>$147</td>
+                      <td><span class="badge bg-success">Approved</span></td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><a href="#">#2644</a></th>
+                      <td>Angus Grady</td>
+                      <td><a href="#" class="text-primar">Ut voluptatem id earum et</a></td>
+                      <td>$67</td>
+                      <td><span class="badge bg-danger">Rejected</span></td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><a href="#">#2644</a></th>
+                      <td>Raheem Lehner</td>
+                      <td><a href="#" class="text-primary">Sunt similique distinctio</a></td>
+                      <td>$165</td>
+                      <td><span class="badge bg-success">Approved</span></td>
+                    </tr>
                     </tbody>
                   </table>
 
@@ -809,50 +958,50 @@
 
                   <table class="table table-borderless">
                     <thead>
-                      <tr>
-                        <th scope="col">Preview</th>
-                        <th scope="col">Product</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Sold</th>
-                        <th scope="col">Revenue</th>
-                      </tr>
+                    <tr>
+                      <th scope="col">Preview</th>
+                      <th scope="col">Product</th>
+                      <th scope="col">Price</th>
+                      <th scope="col">Sold</th>
+                      <th scope="col">Revenue</th>
+                    </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <th scope="row"><a href="#"><img src="assets/img/product-1.jpg" alt=""></a></th>
-                        <td><a href="#" class="text-primary fw-bold">Ut inventore ipsa voluptas nulla</a></td>
-                        <td>$64</td>
-                        <td class="fw-bold">124</td>
-                        <td>$5,828</td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#"><img src="assets/img/product-2.jpg" alt=""></a></th>
-                        <td><a href="#" class="text-primary fw-bold">Exercitationem similique doloremque</a></td>
-                        <td>$46</td>
-                        <td class="fw-bold">98</td>
-                        <td>$4,508</td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#"><img src="assets/img/product-3.jpg" alt=""></a></th>
-                        <td><a href="#" class="text-primary fw-bold">Doloribus nisi exercitationem</a></td>
-                        <td>$59</td>
-                        <td class="fw-bold">74</td>
-                        <td>$4,366</td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#"><img src="assets/img/product-4.jpg" alt=""></a></th>
-                        <td><a href="#" class="text-primary fw-bold">Officiis quaerat sint rerum error</a></td>
-                        <td>$32</td>
-                        <td class="fw-bold">63</td>
-                        <td>$2,016</td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#"><img src="assets/img/product-5.jpg" alt=""></a></th>
-                        <td><a href="#" class="text-primary fw-bold">Sit unde debitis delectus repellendus</a></td>
-                        <td>$79</td>
-                        <td class="fw-bold">41</td>
-                        <td>$3,239</td>
-                      </tr>
+                    <tr>
+                      <th scope="row"><a href="#"><img src="assets/img/product-1.jpg" alt=""></a></th>
+                      <td><a href="#" class="text-primary fw-bold">Ut inventore ipsa voluptas nulla</a></td>
+                      <td>$64</td>
+                      <td class="fw-bold">124</td>
+                      <td>$5,828</td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><a href="#"><img src="assets/img/product-2.jpg" alt=""></a></th>
+                      <td><a href="#" class="text-primary fw-bold">Exercitationem similique doloremque</a></td>
+                      <td>$46</td>
+                      <td class="fw-bold">98</td>
+                      <td>$4,508</td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><a href="#"><img src="assets/img/product-3.jpg" alt=""></a></th>
+                      <td><a href="#" class="text-primary fw-bold">Doloribus nisi exercitationem</a></td>
+                      <td>$59</td>
+                      <td class="fw-bold">74</td>
+                      <td>$4,366</td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><a href="#"><img src="assets/img/product-4.jpg" alt=""></a></th>
+                      <td><a href="#" class="text-primary fw-bold">Officiis quaerat sint rerum error</a></td>
+                      <td>$32</td>
+                      <td class="fw-bold">63</td>
+                      <td>$2,016</td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><a href="#"><img src="assets/img/product-5.jpg" alt=""></a></th>
+                      <td><a href="#" class="text-primary fw-bold">Sit unde debitis delectus repellendus</a></td>
+                      <td>$79</td>
+                      <td class="fw-bold">41</td>
+                      <td>$3,239</td>
+                    </tr>
                     </tbody>
                   </table>
 
@@ -863,7 +1012,6 @@
 
           </div>
         </div><!-- End Left side columns -->
-
         <!-- Right side columns -->
         <div class="col-lg-4">
 
@@ -940,81 +1088,15 @@
             </div>
           </div><!-- End Recent Activity -->
 
-          <!-- Budget Report -->
+          <!-- Packet Checkpoint Chart -->
           <div class="card">
-            <div class="filter">
-              <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                <li class="dropdown-header text-start">
-                  <h6>Filter</h6>
-                </li>
+            <iframe style="background: #FFFFFF;border: none;border-radius: 2px;box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2);"
+                    width="400" height="500"
+                    src="https://charts.mongodb.com/charts-q1-hackathon-team7-oujev/embed/charts?id=622ff5bd-edfd-48b8-8034-38f477eb20c2&maxDataAge=10&theme=light&autoRefresh=true">
+            </iframe>
+          </div><!-- End Packet Checkpoint Chart -->
 
-                <li><a class="dropdown-item" href="#">Today</a></li>
-                <li><a class="dropdown-item" href="#">This Month</a></li>
-                <li><a class="dropdown-item" href="#">This Year</a></li>
-              </ul>
-            </div>
-
-            <div class="card-body pb-0">
-              <h5 class="card-title">Budget Report <span>| This Month</span></h5>
-
-              <div id="budgetChart" style="min-height: 400px;" class="echart"></div>
-
-              <script>
-                document.addEventListener("DOMContentLoaded", () => {
-                  var budgetChart = echarts.init(document.querySelector("#budgetChart")).setOption({
-                    legend: {
-                      data: ['Allocated Budget', 'Actual Spending']
-                    },
-                    radar: {
-                      // shape: 'circle',
-                      indicator: [{
-                          name: 'Sales',
-                          max: 6500
-                        },
-                        {
-                          name: 'Administration',
-                          max: 16000
-                        },
-                        {
-                          name: 'Information Technology',
-                          max: 30000
-                        },
-                        {
-                          name: 'Customer Support',
-                          max: 38000
-                        },
-                        {
-                          name: 'Development',
-                          max: 52000
-                        },
-                        {
-                          name: 'Marketing',
-                          max: 25000
-                        }
-                      ]
-                    },
-                    series: [{
-                      name: 'Budget vs spending',
-                      type: 'radar',
-                      data: [{
-                          value: [4200, 3000, 20000, 35000, 50000, 18000],
-                          name: 'Allocated Budget'
-                        },
-                        {
-                          value: [5000, 14000, 28000, 26000, 42000, 21000],
-                          name: 'Actual Spending'
-                        }
-                      ]
-                    }]
-                  });
-                });
-              </script>
-
-            </div>
-          </div><!-- End Budget Report -->
-
-          <!-- Website Traffic -->
+          <!-- Website Traffics -->
           <div class="card">
             <div class="filter">
               <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
@@ -1146,8 +1228,11 @@
             </div>
           </div><!-- End News & Updates -->
 
-        </div><!-- End Right side columns -->
+        </div>
 
+
+
+        <!-- End Right side columns -->
       </div>
     </section>
 
@@ -1156,7 +1241,7 @@
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
     <div class="copyright">
-      &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
+      &copy; Copyright <strong><span>Security NOC (NiceAdmin)</span></strong>. All Rights Reserved
     </div>
     <div class="credits">
       <!-- All the links in the footer should remain intact. -->
@@ -1181,6 +1266,110 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+
+<!--MongoDB Atlas FTS Search.
+<script>
+
+    var wage = document.getElementById("description");
+    wage.addEventListener("keydown", function (e) {
+        if (e.keyCode === 13) {  //checks whether the pressed key is "Enter"
+            $('.typeahead').typeahead('close');
+            userAction();
+        }
+    });
+
+    const userAction = async () =>
+    {
+        let searchString = document.getElementById("description").value;
+        let txt = "";
+
+        console.log(searchString);
+
+        let query_endpoint_url = "https://us-east-1.aws.data.mongodb-api.com/app/sharath-1-ejeqf/endpoint/fts_query";
+        let url = query_endpoint_url + "?arg=" + searchString;
+
+        fetch(url)
+            .then(function (response) {
+                return response.json();
+            }).then(function (myJson) {
+            if (myJson["$undefined"] === true) {
+                console.log('NO FETCH RESULT');
+                txt += `<br><br><br><b><h3>IMPLEMENT FULL TEXT SEARCH AGGREGATION TO SEARCH MOVIE COLLECTION</h3></b>`;
+            } else {
+                console.log("FETCHED RESULT... "  );
+                if (myJson.length !== 0) {
+                    //console.log("My JSON: " + JSON.stringify(myJson));
+                    console.log("Fetched array has " + myJson.length + " entries");
+                    txt = buildText(myJson);
+                }
+            }  // end of ELSE
+
+            document.getElementById("results").innerHTML = txt;
+        });
+    }
+
+    function buildText(Jason){
+        // HELPER FUNCTION FOR USER ACTION
+
+        let i = 0;      // for number of movie documents returned
+        let j = 0;      // for number of highlight entries
+        let k = 0;      // for highlight.texts type entries - either "hit" or "text"
+
+        let txt = "";
+
+
+        for (i; i < Jason.length; i++) {
+            //highlight_length = Jason[i].highlight.length;
+
+            //console.log("Jason[i]: " + Jason[i].fullplot)
+
+            txt += `<b>${Jason[i].summary }</b><br>`;
+            txt += `<b>Score:  ${Jason[i].score["$numberDouble"]} </b><br><br>`;
+            txt += `Type: ${Jason[i].type} <br>`;
+            txt += `Status: ${Jason[i].status} <br>`;
+            txt += `Reporter: ${Jason[i].reporter} <br>`;
+            txt += `Assignee: ${Jason[i].assignee} <br>`;
+            txt += `Description: ${Jason[i].description} <br><br>`;
+            txt += "<hr>";
+        }
+        return txt;
+    }
+
+    function findMovies(q, syncResults, asyncResults) {
+        return function findMovieMatches(q, syncResults, asyncResults) {
+            var matches= [];
+
+            $.ajax(
+                {
+                    url: "https://us-east-1.aws.data.mongodb-api.com/app/sharath-1-ejeqf/endpoint/fts_typeahead",
+                    type: "GET",
+                    data: {
+                        arg: q
+                    },
+                    success: function(data, status, xhr) {
+                        console.log("Data: " + JSON.stringify(data));
+                        data.forEach(function(item, index) {
+                            matches.push(item.summary);
+                        })
+                        asyncResults(matches);
+                    },
+                    error: function(jqXhr, textStatus, err) {
+                        console.log("Error: " + err);
+                    }
+                }
+            )
+        }
+    }
+
+    $('#the-basics .typeahead').typeahead({
+        hint: true,
+        highlight: true,
+        minLength: 3
+    },
+    {
+        source: findMovies()
+    });
+</script>
 
 </body>
 
